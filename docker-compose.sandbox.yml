@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  azurite-uk-south:
+    image: mcr.microsoft.com/azure-storage/azurite:3.31.0
+    container_name: unif_ai_azurite_disaster_relief
+    command: "azurite-blob --blobHost 0.0.0.0 --blobPort 10000 --skipApiVersionCheck"
+    ports:
+      - "127.0.0.1:10000:10000"
+    environment:
+      AZURE_STORAGE_REGION: "uk-south"
+    restart: unless-stopped
+
+  fake-gcs-eu-west:
+    image: fsouza/fake-gcs-server:1.49.2
+    container_name: unif_ai_gcs_disaster_relief
+    command: "-scheme http -port 4443 -filesystem-root /data"
+    ports:
+      - "127.0.0.1:4443:4443"
+    environment:
+      GCS_REGION: "europe-west2"
+    restart: unless-stopped

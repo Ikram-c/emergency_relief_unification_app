@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNIF_AI | AberTech Disaster Relief Vision &amp; Telemetry</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="tactical-shell">
+    <header class="top-status-bar">
+      <div class="brand-block">
+        <h1 class="brand-title">ABERTECH DISASTER RELIEF | UNIF_AI v2.0</h1>
+        <p class="brand-subtitle">
+          Privacy-First Aerial Vision, DashCam Tracking &amp; H3 Spatial Relief
+        </p>
+      </div>
+      <div class="status-pills">
+        <span id="pill-region" class="status-pill">Region: uk-south</span>
+        <span id="pill-slot" class="status-pill">Active Slot: BLUE</span>
+        <span id="pill-ledger" class="status-pill">Ledger: Verified</span>
+        <button id="btn-open-gdpr-modal" class="secondary-btn" type="button">
+          GDPR &amp; Pre-Deploy Gate
+        </button>
+      </div>
+    </header>
+
+    <nav class="screen-nav-bar" aria-label="Disaster Relief Screen Switcher">
+      <button
+        id="nav-btn-startpage"
+        class="nav-tab-btn nav-tab-active"
+        type="button"
+        data-target="view-startpage"
+      >
+        1. Startpage &amp; Workflow
+      </button>
+      <button
+        id="nav-btn-base-home"
+        class="nav-tab-btn"
+        type="button"
+        data-target="view-base-home"
+      >
+        2. Base Home Menu
+      </button>
+      <button
+        id="nav-btn-new-rescue"
+        class="nav-tab-btn"
+        type="button"
+        data-target="view-new-rescue"
+      >
+        3. New Relief Flow
+      </button>
+      <button
+        id="nav-btn-portal-dashboard"
+        class="nav-tab-btn"
+        type="button"
+        data-target="view-portal-dashboard"
+      >
+        4. Portal Dashboard
+      </button>
+      <button
+        id="nav-btn-reference-layers"
+        class="nav-tab-btn"
+        type="button"
+        data-target="view-reference-layers"
+      >
+        5. Reference Layers
+      </button>
+    </nav>
+
+    <section id="error-boundary-panel" class="error-boundary-panel hidden">
+      <h2 id="error-boundary-title" class="stage-title">
+        Safety Error Boundary
+      </h2>
+      <p id="error-boundary-message" class="stage-detail">
+        Contained operational error with zero stack-trace exposure.
+      </p>
+      <p id="error-boundary-hint" class="input-label">
+        Verify relief mission parameters and retry.
+      </p>
+      <button id="btn-dismiss-error" class="secondary-btn" type="button">
+        Return to Disaster Relief Command
+      </button>
+    </section>
+
+    <section id="view-startpage" class="screen-view">
+      <article class="infographic-banner">
+        <div class="infographic-header">
+          <span class="infographic-kicker">
+            HOW UNIF_AI WORKS IN DISASTER RELIEF
+          </span>
+          <h2 class="infographic-title">
+            End-to-End Privacy-Preserving Humanitarian Intelligence
+          </h2>
+          <p class="infographic-lead">
+            Turns raw drone, dashcam, and coastal imagery into deduplicated,
+            UK/EU GDPR-compliant situational maps in four deterministic steps.
+          </p>
+        </div>
+
+        <ol class="workflow-infographic-grid">
+          <li class="infographic-step step-capture">
+            <span class="step-badge">STEP 01</span>
+            <h3 class="step-heading">Multi-Modal Capture</h3>
+            <p class="step-copy">
+              Ingests rotary UAV, 4x4 dashcam, foot team, and coastal vessel
+              feeds while stripping EXIF tags at the boundary.
+            </p>
+          </li>
+          <li class="infographic-step step-redact">
+            <span class="step-badge">STEP 02</span>
+            <h3 class="step-heading">Edge Vision &amp; ROI Blur</h3>
+            <p class="step-copy">
+              Applies irreversible EDPB 3/2019 block-blur over sensitive crops
+              while detecting structural anomalies and EFD contours.
+            </p>
+          </li>
+          <li class="infographic-step step-spatial">
+            <span class="step-badge">STEP 03</span>
+            <h3 class="step-heading">Graph Dedup &amp; H3 DP</h3>
+            <p class="step-copy">
+              Merges duplicate sightings via BFS graph transitivity and
+              coarsens GPS to aperture-7 H3 cells (U=0.0) with Laplace DP.
+            </p>
+          </li>
+          <li class="infographic-step step-sync">
+            <span class="step-badge">STEP 04</span>
+            <h3 class="step-heading">OME-Zarr &amp; UK/EU Sync</h3>
+            <p class="step-copy">
+              Commits chunked OME-Zarr cubes and SHA-256 hash-chained audit
+              logs to UK/EU sovereign storage with Art. 17 erasure.
+            </p>
+          </li>
+        </ol>
+
+        <div class="infographic-cta-row">
+          <button
+            id="btn-enter-command"
+            class="primary-cta-btn"
+            type="button"
+          >
+            Enter Base Home Menu
+          </button>
+          <span id="startpage-readiness-text" class="status-pill">
+            OWASP ASVS v5.0 &amp; UK/EU GDPR Art. 25/32 Verified
+          </span>
+        </div>
+      </article>
+
+      <div class="stage-cards-grid">
+        <article class="stage-card">
+          <h3 class="stage-title">Unified 3-App Relief Vision</h3>
+          <p class="stage-detail">
+            1. Aerial Thermal/Optical Sobel-Otsu Anomaly Detection
+          </p>
+          <p class="stage-detail">
+            2. Cloud-DashCam Inter-Frame Motion &amp; Homography Skew
+          </p>
+          <p class="stage-detail">
+            3. Elliptical Fourier Descriptor (EFD) Debris Contours
+          </p>
+        </article>
+        <article class="stage-card">
+          <h3 class="stage-title">DOD Storage &amp; Graph Deduplication</h3>
+          <p id="startpage-zarr-summary" class="stage-detail">
+            Chunked OME-Zarr v2 Store | BFS Graph-Transitivity Deduplication.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-base-home" class="screen-view hidden">
+      <div class="control-deck">
+        <button
+          id="btn-launch-batch"
+          class="circular-action-btn"
+          type="button"
+        >
+          RUN RELIEF BATCH
+        </button>
+        <div class="form-grid">
+          <div class="input-group">
+            <label class="input-label" for="input-batch-id">
+              RELIEF BATCH ID
+            </label>
+            <input
+              id="input-batch-id"
+              class="tactical-input"
+              type="text"
+              value="relief_flood_001"
+            >
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="input-owner-id">
+              RESPONDER ID (BOLA OWNER)
+            </label>
+            <input
+              id="input-owner-id"
+              class="tactical-input"
+              type="text"
+              value="responder_alpha"
+            >
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="input-subject-id">
+              AFFECTED PERSON TAG (HKDF PSEUDONYMISED)
+            </label>
+            <input
+              id="input-subject-id"
+              class="tactical-input"
+              type="text"
+              value="person_tag_01"
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-cards-grid">
+        <article id="stage-card-0" class="stage-card">
+          <h3 class="stage-title">1. Ingress, CropConfig &amp; EXIF Strip</h3>
+          <p id="stage-detail-0" class="stage-detail">
+            Awaiting relief batch: CWE-22 guard, CropConfig &amp; pixel clone.
+          </p>
+        </article>
+        <article id="stage-card-1" class="stage-card">
+          <h3 class="stage-title">2. Visual Blur &amp; 3-App Vision</h3>
+          <p id="stage-detail-1" class="stage-detail">
+            Awaiting Stage 1: .npz Sobel, DashCam vectors &amp; EFD contours.
+          </p>
+        </article>
+        <article id="stage-card-2" class="stage-card">
+          <h3 class="stage-title">3. Graph Transitivity &amp; H3 DP</h3>
+          <p id="stage-detail-2" class="stage-detail">
+            Awaiting Stage 2: BFS transitivity clusters, H3 (U=0.0) &amp; DP.
+          </p>
+        </article>
+        <article id="stage-card-3" class="stage-card">
+          <h3 class="stage-title">4. OME-Zarr, Sandbox &amp; Ledger</h3>
+          <p id="stage-detail-3" class="stage-detail">
+            Awaiting Stage 3: DOD OME-Zarr chunks, SQLite &amp; hash chain.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-new-rescue" class="screen-view hidden">
+      <div class="control-deck">
+        <div class="form-grid">
+          <div class="input-group">
+            <label class="input-label" for="select-transport-mode">
+              RELIEF TRANSPORT MODE
+            </label>
+            <select id="select-transport-mode" class="tactical-input">
+              <option value="UAV_ROTARY">UAV_ROTARY (Aerial Recon)</option>
+              <option value="DASHCAM_4X4">DASHCAM_4X4 (Convoy Corridor)</option>
+              <option value="FOOT_TEAM">FOOT_TEAM (Ground Responders)</option>
+              <option value="COASTAL_VESSEL">
+                COASTAL_VESSEL (Flood &amp; Surge Craft)
+              </option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="select-terrain-sector">
+              DISASTER ZONE &amp; SECTOR
+            </label>
+            <select id="select-terrain-sector" class="tactical-input">
+              <option value="FLOOD_ZONE_SECTOR_ALPHA">
+                FLOOD_ZONE_SECTOR_ALPHA
+              </option>
+              <option value="EARTHQUAKE_URBAN_GRID">
+                EARTHQUAKE_URBAN_GRID
+              </option>
+              <option value="COASTAL_STORM_SURGE">
+                COASTAL_STORM_SURGE
+              </option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="input-weather-state">
+              WEATHER TELEMETRY STATE
+            </label>
+            <input
+              id="input-weather-state"
+              class="tactical-input"
+              type="text"
+              value="SEVERE_STORM_LOW_VISIBILITY"
+            >
+          </div>
+        </div>
+        <div class="status-pills">
+          <button
+            id="btn-create-rescue-flow"
+            class="primary-cta-btn"
+            type="button"
+          >
+            Launch Configured Relief Flow
+          </button>
+          <button id="btn-query-rag" class="secondary-btn" type="button">
+            Query RAG Relief Protocol Advisor
+          </button>
+        </div>
+      </div>
+      <article class="stage-card stage-card-active">
+        <h3 class="stage-title">RAG Disaster Relief Protocol Advisory</h3>
+        <p id="rag-advisory-output" class="stage-detail">
+          Select disaster sector and transport mode to retrieve zero-PII guidance.
+        </p>
+      </article>
+    </section>
+
+    <section id="view-portal-dashboard" class="screen-view hidden">
+      <div class="control-deck">
+        <div class="input-group">
+          <label class="input-label" for="input-portal-operator">
+            AUTHENTICATED RESPONDER ID (BOLA FILTER)
+          </label>
+          <input
+            id="input-portal-operator"
+            class="tactical-input"
+            type="text"
+            value="responder_alpha"
+          >
+        </div>
+        <button id="btn-refresh-portal" class="secondary-btn" type="button">
+          Refresh Portal Dashboard
+        </button>
+      </div>
+      <div class="stage-cards-grid" id="portal-rescues-grid">
+        <article class="stage-card">
+          <h3 class="stage-title">Portal Disaster Relief Batches</h3>
+          <p id="portal-empty-notice" class="stage-detail">
+            Run a batch or click Refresh Portal Dashboard to view deployments.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-reference-layers" class="screen-view hidden">
+      <div class="stage-cards-grid" id="reference-layers-grid">
+        <article class="stage-card stage-card-active">
+          <h3 class="stage-title">H3_K_ANONYMITY_GRID</h3>
+          <p id="layer-detail-h3" class="stage-detail">
+            Aperture-7 hexagonal coarsening (U=0.0) &amp; Laplace DP noise.
+          </p>
+        </article>
+        <article class="stage-card stage-card-active">
+          <h3 class="stage-title">INFRASTRUCTURE_DAMAGE_DEM</h3>
+          <p id="layer-detail-dem" class="stage-detail">
+            Graph-transitivity deduplicated relief target centroids.
+          </p>
+        </article>
+        <article class="stage-card stage-card-active">
+          <h3 class="stage-title">THERMAL_ANOMALY_HEATMAP</h3>
+          <p id="layer-detail-thermal" class="stage-detail">
+            Sobel/Otsu verified .npz anomaly bounding boxes &amp; EFD energy.
+          </p>
+        </article>
+        <article class="stage-card stage-card-active">
+          <h3 class="stage-title">DASHCAM_CONVOY_VECTORS</h3>
+          <p id="layer-detail-dashcam" class="stage-detail">
+            Cloud-DashCam inter-frame centroid motion &amp; perspective skew.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div id="gdpr-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <h2 class="stage-title">GDPR Art. 17 &amp; Blue-Green Deployment</h2>
+        <p id="modal-status-text" class="stage-detail">
+          Select an operational control action below.
+        </p>
+        <div class="status-pills">
+          <button id="btn-trigger-erasure" class="danger-btn" type="button">
+            Execute GDPR Art. 17 Right to Erasure
+          </button>
+          <button id="btn-switch-slot-ok" class="secondary-btn" type="button">
+            Promote Standby Slot (Verified Healthy)
+          </button>
+          <button
+            id="btn-close-gdpr-modal"
+            class="secondary-btn"
+            type="button"
+          >
+            Close Modal
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bottom-connection-bar">
+      <span id="batch-telemetry-summary">
+        No relief batch executed in current session.
+      </span>
+      <span id="connection-summary">
+        UK/EU Sandbox: Loopback Ready | Rate Limit: 60 req/min
+      </span>
+    </footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+application:
+  name: "unif_ai"
+  domain_title: "AberTech Disaster Relief Vision & Telemetry Orchestrator"
+  version: "2.0.0"
+  active_slot: "blue"
+  standby_slot: "green"
+  workspace_dir: "./workspace"
+  staging_dir: "./workspace/staging"
+  output_dir: "./workspace/output"
+  zarr_store_dir: "./workspace/zarr_stores"
+  ledger_path: "./workspace/ledger/gdpr_accountability.jsonl"
+  database_path: "./workspace/data/unif_ai_missions.sqlite3"
+  weights_path: "./workspace/models/sobel_otsu_kernel.npz"
+
+security:
+  max_file_size_bytes: 10485760
+  max_archive_members: 32
+  max_image_width: 4096
+  max_image_height: 4096
+  max_image_pixels: 16777216
+  max_zarr_dimensions: 5
+  max_zarr_chunk_bytes: 4194304
+  allowed_zarr_codecs:
+    - "blosc"
+    - "gzip"
+    - "lz4"
+    - "zlib"
+    - "zstd"
+  allowed_schemes:
+    - "http"
+    - "https"
+  allowed_hosts:
+    - "127.0.0.1"
+    - "localhost"
+    - "azurite.local"
+    - "gcs.local"
+  allowed_binaries:
+    - "python3"
+    - "git"
+  allowed_cors_origins:
+    - "http://127.0.0.1:8080"
+    - "http://localhost:8080"
+
+gdpr:
+  cloud_region: "uk-south"
+  allowed_regions:
+    - "uk-south"
+    - "uk-west"
+    - "eu-west-1"
+    - "eu-west-2"
+    - "eu-central-1"
+    - "europe-west1"
+    - "europe-west2"
+  hkdf_epoch: "2026-Q4"
+  staging_ttl_seconds: 3600
+  blur_block_size: 8
+  blur_kernel_radius: 2
+  spatial_k_min: 3
+  spatial_max_coarsen_steps: 6
+  dp_epsilon: 0.85
+  dp_sensitivity: 1.0
+
+predeploy:
+  rate_limit_requests_per_minute: 60
+  rate_limit_window_seconds: 60
+  password_reset_ttl_seconds: 1800
+  log_ring_buffer_capacity: 256
+  log_detail_max_length: 200
+  indexed_columns:
+    - "owner_id"
+    - "batch_id"
+
+sandbox:
+  azurite_endpoint: "http://127.0.0.1:10000/devstoreaccount1"
+  fake_gcs_endpoint: "http://127.0.0.1:4443/storage/v1/b"
+  container_name: "unif-ai-disaster-relief"
+  offline_fallback_enabled: true
+  synthetic_frame_width: 64
+  synthetic_frame_height: 64
+  synthetic_frame_count: 3
+  default_crop_top_pct: 18.75
+  default_crop_left_pct: 18.75
+  default_crop_bottom_pct: 43.75
+  default_crop_right_pct: 43.75
+
+pipeline:
+  enabled_stages:
+    - "ingress_validation_and_exif_strip"
+    - "visual_redaction_and_edge_detection"
+    - "spatial_deduplication_and_k_anonymity"
+    - "cloud_sandbox_sync_and_ledger_commit"
+  edge_threshold_percentile: 75.0
+  spatial_dedup_radius_meters: 15.0
+  base_grid_step_degrees: 0.001
+  efd_harmonic_order: 4

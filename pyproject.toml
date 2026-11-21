@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unif-ai"
+version = "2.0.0"
+description = "AberTech Disaster Relief Vision & Telemetry Orchestrator"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Ikram Choudhury" }
+]
+dependencies = [
+  "numpy>=1.26.0",
+  "pyyaml>=6.0.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["unif_ai*"]
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
